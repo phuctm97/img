@@ -1,5 +1,9 @@
 {
   "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "~server/*": ["server/*"]
+    },
     "allowJs": false,
     "strict": true,
     "alwaysStrict": true,
