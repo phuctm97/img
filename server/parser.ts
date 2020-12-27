@@ -1,10 +1,12 @@
-import { IncomingMessage } from "http";
+import { NextApiRequest } from "next";
 import { parse } from "url";
 import { ParsedRequest, Theme } from "./types";
 
-export function parseRequest(req: IncomingMessage) {
-  console.log("HTTP " + req.url);
-  const { pathname, query } = parse(req.url || "/", true);
+export function parseRequest(req: NextApiRequest) {
+  const {
+    query: { name: pathname },
+  } = req;
+  const { query } = parse(req.url || "/", true);
   const { fontSize, images, widths, heights, theme, md } = query || {};
 
   if (Array.isArray(fontSize)) {
@@ -14,7 +16,7 @@ export function parseRequest(req: IncomingMessage) {
     throw new Error("Expected a single theme");
   }
 
-  const arr = (pathname || "/").slice(1).split(".");
+  const arr = (pathname as string).split(".");
   let extension = "";
   let text = "";
   if (arr.length === 0) {
