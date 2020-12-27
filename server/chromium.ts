@@ -1,17 +1,16 @@
-import { launch, Page } from "puppeteer-core";
+import puppeteer, { Page } from "puppeteer-core";
 import { getOptions } from "./options";
 import { FileType } from "./types";
 
-let _page: Page | null;
+let prebuiltPage: Page | null;
 
 async function getPage(isDev: boolean) {
-  if (_page) {
-    return _page;
-  }
+  if (prebuiltPage) return prebuiltPage;
+
   const options = await getOptions(isDev);
-  const browser = await launch(options);
-  _page = await browser.newPage();
-  return _page;
+  const browser = await puppeteer.launch(options);
+  prebuiltPage = await browser.newPage();
+  return prebuiltPage;
 }
 
 export async function getScreenshot(
