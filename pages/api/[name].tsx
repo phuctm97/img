@@ -3,7 +3,7 @@ import { parseRequest } from "~server/parser";
 import { getScreenshot } from "~server/chromium";
 import { getHtml } from "~server/template";
 
-const isChromeDev = process.env.CHROME_PROD !== "1";
+const isChromeDev = process.env.CHROME_REMOTE !== "1";
 const isHtmlDebug = process.env.HTML_DEBUG === "1";
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
