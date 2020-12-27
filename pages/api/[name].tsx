@@ -3,7 +3,7 @@ import { parseRequest } from "~server/parser";
 import { getScreenshot } from "~server/chromium";
 import { getHtml } from "~server/template";
 
-const isDev = false;
+const isChromeDev = process.env.CHROME_PROD !== "1";
 const isHtmlDebug = process.env.HTML_DEBUG === "1";
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
@@ -17,7 +17,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     }
 
     const { fileType } = parsedReq;
-    const file = await getScreenshot(html, fileType, isDev);
+    const file = await getScreenshot(html, fileType, isChromeDev);
     res.statusCode = 200;
     res.setHeader("Content-Type", `image/${fileType}`);
     res.setHeader(
