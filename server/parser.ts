@@ -1,74 +1,36 @@
 import { NextApiRequest } from "next";
-import { parse } from "url";
-import { ParsedRequest, Theme } from "./types";
+import { ParsedRequest } from "./types";
+import { getStringArray } from "./utils";
 
-export function parseRequest(req: NextApiRequest) {
-  const {
-    query: { name: pathname },
-  } = req;
-  const { query } = parse(req.url || "/", true);
-  const { fontSize, images, widths, heights, theme, md } = query || {};
+export const parseRequest = (req: NextApiRequest) => {
+  const { query } = req;
+  const { name, fontSize, images, widths, heights, theme, md } = query;
 
-  if (Array.isArray(fontSize)) {
-    throw new Error("Expected a single fontSize");
-  }
-  if (Array.isArray(theme)) {
-    throw new Error("Expected a single theme");
-  }
+  if (Array.isArray(name)) throw new Error("Expected a single name.");
+  if (Array.isArray(fontSize)) throw new Error("Expected a single fontSize.");
+  if (Array.isArray(theme)) throw new Error("Expected a single theme.");
 
-  const arr = (pathname as string).split(".");
-  let extension = "";
+  const parts = name.split(".");
+  let ext = "";
   let text = "";
-  if (arr.length === 0) {
+  if (parts.length === 0) {
     text = "";
-  } else if (arr.length === 1) {
-    text = arr[0];
+  } else if (parts.length === 1) {
+    text = parts[0];
   } else {
-    extension = arr.pop() as string;
-    text = arr.join(".");
+    ext = parts.pop() || "";
+    text = parts.join(".");
   }
 
-  const parsedRequest: ParsedRequest = {
-    fileType: extension === "jpeg" ? extension : "png",
+  const parsedReq: ParsedRequest = {
+    fileType: ext === "jpeg" || ext === "jpg" ? "jpeg" : "png",
     text: decodeURIComponent(text),
     theme: theme === "dark" ? "dark" : "light",
     md: md === "1" || md === "true",
     fontSize: fontSize || "96px",
-    images: getArray(images),
-    widths: getArray(widths),
-    heights: getArray(heights),
+    images: getStringArray(images),
+    widths: getStringArray(widths),
+    heights: getStringArray(heights),
   };
-  parsedRequest.images = getDefaultImages(
-    parsedRequest.images,
-    parsedRequest.theme
-  );
-  return parsedRequest;
-}
-
-function getArray(stringOrArray: string[] | string | undefined): string[] {
-  if (typeof stringOrArray === "undefined") {
-    return [];
-  } else if (Array.isArray(stringOrArray)) {
-    return stringOrArray;
-  } else {
-    return [stringOrArray];
-  }
-}
-
-function getDefaultImages(images: string[], theme: Theme): string[] {
-  const defaultImage =
-    theme === "light"
-      ? "https://assets.vercel.com/image/upload/front/assets/design/vercel-triangle-black.svg"
-      : "https://assets.vercel.com/image/upload/front/assets/design/vercel-triangle-white.svg";
-
-  if (!images || !images[0]) {
-    return [defaultImage];
-  }
-  if (
-    !images[0].startsWith("https://assets.vercel.com/") &&
-    !images[0].startsWith("https://assets.zeit.co/")
-  ) {
-    images[0] = defaultImage;
-  }
-  return images;
-}
+  return parsedReq;
+};
