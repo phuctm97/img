@@ -1,4 +1,4 @@
-const entityMap: { [key: string]: string } = {
+const sanitizedTokens: { [key: string]: string } = {
   "&": "&amp;",
   "<": "&lt;",
   ">": "&gt;",
@@ -7,6 +7,5 @@ const entityMap: { [key: string]: string } = {
   "/": "&#x2F;",
 };
 
-export function sanitizeHtml(html: string) {
-  return String(html).replace(/[&<>"'\/]/g, (key) => entityMap[key]);
-}
+export const sanitizeHtml = (html: string | Buffer) =>
+  String(html).replace(/[&<>"'\/]/g, (key) => sanitizedTokens[key]);
