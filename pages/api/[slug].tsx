@@ -3,7 +3,7 @@ import { parseRequest } from "~server/parser";
 import { getHtml } from "~server/template";
 import { getScreenshot } from "~server/chromium";
 import { dayInSecs } from "~utils/time";
-import { isChromeLocal, isHTMLDebug } from "~utils/env";
+import { isHTMLDebug } from "~utils/env";
 
 const cacheAge = 7 * dayInSecs;
 
@@ -18,7 +18,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     }
 
     const { fileType } = parsedReq;
-    const screenshot = await getScreenshot(html, fileType, isChromeLocal);
+    const screenshot = await getScreenshot(html, fileType);
     res.statusCode = 200;
     res.setHeader("Content-Type", `image/${fileType}`);
     res.setHeader(
