@@ -36,10 +36,10 @@ const getPage = async (isLocal = isChromeLocal) => {
 export const getScreenshot = async (
   html: string,
   type: NonNullable<puppeteer.ScreenshotOptions["type"]>,
-  isLocal = isChromeLocal
+  { isLocal = isChromeLocal, width = 1200, height = 630 }
 ) => {
   const page = await getPage(isLocal);
-  await page.setViewport({ width: 1200, height: 630 }); // OG recommended image size
+  await page.setViewport({ width, height }); // OG recommended image size
   await page.setContent(html);
   return page.screenshot({ type });
 };

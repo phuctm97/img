@@ -16,7 +16,10 @@ const rglr = readFont("Inter-Regular.woff2");
 const bold = readFont("Inter-Bold.woff2");
 const mono = readFont("Vera-Mono.woff2");
 
-const getCss = (theme: string, baseSize = "10px") => {
+const getCss = (
+  theme: string,
+  { fontSize = 10, width = 1200, height = 630 }
+) => {
   let background = "white";
   let foreground = "black";
   let radial = "lightgray";
@@ -46,7 +49,7 @@ const getCss = (theme: string, baseSize = "10px") => {
       src: url(data:font/woff2;charset=utf-8;base64,${mono}) format("woff2");
     }
     html {
-      font-size: ${baseSize};
+      font-size: ${fontSize}px;
     }
     html, body {
       margin: 0;
@@ -66,8 +69,8 @@ const getCss = (theme: string, baseSize = "10px") => {
       background: ${background};
       background-image: radial-gradient(circle at 1.5rem 1.5rem, ${radial} 2%, transparent 0%), radial-gradient(circle at 5rem 5rem, ${radial} 2%, transparent 0%);
       background-size: 6.5rem 6.5rem;
-      width: 1200px;
-      height: 630px;
+      width: ${width}px;
+      height: ${height}px;
       display: flex;
       flex-direction: column;
       text-align: center;
@@ -76,11 +79,15 @@ const getCss = (theme: string, baseSize = "10px") => {
     }
     main {
       flex: 1;
-      margin: 6.5rem 3rem 0 3rem;
+      margin: 3rem 3rem 0 3rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
     }
     footer {
       position: relative;
-      bottom: 2rem;
+      bottom: 3rem;
     }
     code {
       color: #d400ff;
@@ -99,7 +106,7 @@ const getCss = (theme: string, baseSize = "10px") => {
       justify-items: center;
     }
     .logo {
-      width: 16rem;
+      height: 16rem;
       margin: 0 4.5rem;
     }
     .plus {
@@ -119,6 +126,9 @@ const getCss = (theme: string, baseSize = "10px") => {
       font-style: normal;
       color: ${foreground};
       line-height: 1.65;
+    }
+    .heading p {
+      margin: 2rem 0;
     }
     footer p {
       font-size: 2rem;
@@ -150,14 +160,14 @@ const getLogo = (name: string, color?: string) => {
 const getPlusSign = (i: number) => (i === 0 ? "" : '<div class="plus">+</div>');
 
 export const getHtml = (req: ParsedRequest) => {
-  const { text, theme, icons, colors } = req;
+  const { text, theme, fontSize, width, height, icons, colors } = req;
   return `<!DOCTYPE html>
 <html>
   <meta charset="utf-8">
   <title>Generated Image</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
-    ${getCss(theme)}
+    ${getCss(theme, { fontSize, width, height })}
   </style>
   <body>
     <div class="container">

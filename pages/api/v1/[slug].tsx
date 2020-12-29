@@ -18,7 +18,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     }
 
     const { fileType } = parsedReq;
-    const screenshot = await getScreenshot(html, fileType);
+    const screenshot = await getScreenshot(html, fileType, {});
     res.statusCode = 200;
     res.setHeader("Content-Type", `image/${fileType}`);
     res.setHeader(
