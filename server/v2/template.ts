@@ -18,7 +18,7 @@ const mono = readFont("Vera-Mono.woff2");
 
 const getCss = (
   theme: string,
-  { fontSize = 10, width = 1200, height = 630 }
+  { fontSize = 10, width = 1200, height = 630, marginTop = 2, marginBottom = 2 }
 ) => {
   let background = "white";
   let foreground = "black";
@@ -79,7 +79,7 @@ const getCss = (
     }
     main {
       flex: 1;
-      margin: 3rem 3rem 0 3rem;
+      margin: ${marginTop}rem 3rem 0 3rem;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -87,7 +87,7 @@ const getCss = (
     }
     footer {
       position: relative;
-      bottom: 3rem;
+      bottom: ${marginBottom}rem;
     }
     code {
       color: #d400ff;
@@ -160,14 +160,24 @@ const getLogo = (name: string, color?: string) => {
 const getPlusSign = (i: number) => (i === 0 ? "" : '<div class="plus">+</div>');
 
 export const getHtml = (req: ParsedRequest) => {
-  const { text, theme, fontSize, width, height, icons, colors } = req;
+  const {
+    text,
+    theme,
+    fontSize,
+    width,
+    height,
+    marginTop,
+    marginBottom,
+    icons,
+    colors,
+  } = req;
   return `<!DOCTYPE html>
 <html>
   <meta charset="utf-8">
   <title>Generated Image</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
-    ${getCss(theme, { fontSize, width, height })}
+    ${getCss(theme, { fontSize, width, height, marginTop, marginBottom })}
   </style>
   <body>
     <div class="container">

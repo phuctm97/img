@@ -6,6 +6,8 @@ export interface ParsedRequest {
   width: number;
   height: number;
   fontSize: number;
+  marginTop: number;
+  marginBottom: number;
   text: string;
   theme: "light" | "dark";
   icons: string[];
@@ -16,11 +18,19 @@ type Preset = {
   width: number;
   height: number;
   fontSize: number;
+  marginTop: number;
+  marginBottom: number;
 };
 
 const presets: { [index: string]: Preset } = {
-  og: { width: 1200, height: 630, fontSize: 10 },
-  devto: { width: 1000, height: 420, fontSize: 8 },
+  og: { width: 1200, height: 630, fontSize: 10, marginTop: 2, marginBottom: 2 },
+  devto: {
+    width: 1000,
+    height: 420,
+    fontSize: 8,
+    marginTop: 0.8,
+    marginBottom: 0.8,
+  },
 };
 
 export const parseRequest = (req: NextApiRequest) => {
