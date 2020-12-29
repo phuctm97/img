@@ -2,7 +2,7 @@ import path from "path";
 import { readFileSync } from "fs";
 import marked from "marked";
 import twemoji from "twemoji";
-import { sanitizeHtml } from "~server/sanitizer";
+import simpleIcons from "simple-icons";
 import { ParsedRequest } from "./parser";
 
 const emojify = (text: string) =>
@@ -16,7 +16,7 @@ const rglr = readFont("Inter-Regular.woff2");
 const bold = readFont("Inter-Bold.woff2");
 const mono = readFont("Vera-Mono.woff2");
 
-const getCss = (theme: string, fontSize: string, baseSize = "16px") => {
+const getCss = (theme: string, baseSize = "16px") => {
   let background = "white";
   let foreground = "black";
   let radial = "lightgray";
@@ -91,6 +91,7 @@ const getCss = (theme: string, fontSize: string, baseSize = "16px") => {
       justify-items: center;
     }
     .logo {
+      width: 16rem;
       margin: 0 4.5rem;
     }
     .plus {
@@ -106,14 +107,14 @@ const getCss = (theme: string, fontSize: string, baseSize = "16px") => {
     }
     .heading {
       font-family: 'Inter', sans-serif;
-      font-size: ${sanitizeHtml(fontSize)};
+      font-size: 6.5rem;
       font-style: normal;
       color: ${foreground};
       line-height: 1.65;
     }
     footer p {
       font-size: 2rem;
-      color: #6b7280;
+      color: ${theme === "light" ? "#9ca3af" : "#6b7280"};
     }
     footer p strong {
       color: #2563eb;
@@ -124,37 +125,40 @@ const getCss = (theme: string, fontSize: string, baseSize = "16px") => {
     }`;
 };
 
-const getImage = (src: string, width = "auto", height = "12.5rem") => `<img
-  class="logo"
-  alt="Generated Image"
-  src="${sanitizeHtml(src)}"
-  style="width:${sanitizeHtml(width)};height:${sanitizeHtml(height)};"
-/>`;
+const getLogo = (name: string, color?: string) => {
+  const logo = simpleIcons.get(name);
+  if (!logo) return;
+
+  const fill = (color && color !== "invert" && color) || `#${logo.hex}`;
+  const filter = color === "invert" ? "invert(100%)" : "none";
+  return `<svg role="img" class="logo" fill="${fill}" style="filter:${filter};" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <title>${logo.title}</title>
+    <path d="${logo.path}" />
+  </svg>`;
+};
 
 const getPlusSign = (i: number) => (i === 0 ? "" : '<div class="plus">+</div>');
 
 export const getHtml = (req: ParsedRequest, isDebug = false) => {
-  const { text, theme, md, fontSize, images, widths, heights } = req;
+  const { text, theme, icons, colors } = req;
   return `<!DOCTYPE html>
 <html>
   <meta charset="utf-8">
   <title>Generated Image</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
-    ${getCss(theme, fontSize, isDebug ? "16px" : "10px")}
+    ${getCss(theme, isDebug ? "16px" : "10px")}
   </style>
   <body>
     <main>
       <div class="logo-wrapper">
-        ${images
-          .map(
-            (img, i) => getPlusSign(i) + getImage(img, widths[i], heights[i])
-          )
+        ${icons
+          .map((icon, i) => getLogo(icon, colors[i]))
+          .filter((icon) => !!icon)
+          .map((icon, i) => getPlusSign(i) + icon)
           .join("")}
       </div>
-      <div class="heading">${emojify(
-        md ? marked(text) : sanitizeHtml(text)
-      )}</div>
+      <div class="heading">${emojify(marked(text))}</div>
     </main>
     <footer>
       <p>(
