@@ -16,7 +16,7 @@ const rglr = readFont("Inter-Regular.woff2");
 const bold = readFont("Inter-Bold.woff2");
 const mono = readFont("Vera-Mono.woff2");
 
-const getCss = (theme: string, baseSize = "16px") => {
+const getCss = (theme: string, baseSize = "10px") => {
   let background = "white";
   let foreground = "black";
   let radial = "lightgray";
@@ -53,12 +53,21 @@ const getCss = (theme: string, baseSize = "16px") => {
       padding: 0;
     }
     body {
+      background: ${background};
       font-family: 'Inter', sans-serif;
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .container {
       background: ${background};
       background-image: radial-gradient(circle at 1.5rem 1.5rem, ${radial} 2%, transparent 0%), radial-gradient(circle at 5rem 5rem, ${radial} 2%, transparent 0%);
       background-size: 6.5rem 6.5rem;
-      width: 100vw;
-      height: 100vh;
+      width: 1200px;
+      height: 630px;
       display: flex;
       flex-direction: column;
       text-align: center;
@@ -70,9 +79,8 @@ const getCss = (theme: string, baseSize = "16px") => {
       margin: 6.5rem 3rem 0 3rem;
     }
     footer {
-      position: absolute;
-      bottom: 0;
-      padding-bottom: 1.8rem;
+      position: relative;
+      bottom: 2rem;
     }
     code {
       color: #d400ff;
@@ -141,7 +149,7 @@ const getLogo = (name: string, color?: string) => {
 
 const getPlusSign = (i: number) => (i === 0 ? "" : '<div class="plus">+</div>');
 
-export const getHtml = (req: ParsedRequest, isDebug = false) => {
+export const getHtml = (req: ParsedRequest) => {
   const { text, theme, icons, colors } = req;
   return `<!DOCTYPE html>
 <html>
@@ -149,9 +157,10 @@ export const getHtml = (req: ParsedRequest, isDebug = false) => {
   <title>Generated Image</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
-    ${getCss(theme, isDebug ? "16px" : "10px")}
+    ${getCss(theme)}
   </style>
   <body>
+    <div class="container">
     <main>
       <div class="logo-wrapper">
         ${icons
@@ -174,6 +183,7 @@ export const getHtml = (req: ParsedRequest, isDebug = false) => {
         + <svg fill="none" viewBox="0 0 337 337"><rect x="113" y="113" width="111" height="111" rx="55.5" fill="white"/><path fill-rule="evenodd" clip-rule="evenodd" d="M23.155 112.598c-30.873 30.874-30.873 80.93 0 111.804l89.443 89.443c30.874 30.873 80.93 30.873 111.804 0l89.443-89.443c30.873-30.874 30.873-80.93 0-111.804l-89.443-89.443c-30.874-30.873-80.93-30.873-111.804 0l-89.443 89.443zm184.476 95.033c21.612-21.611 21.612-56.651 0-78.262-21.611-21.612-56.651-21.612-78.262 0-21.612 21.611-21.612 56.651 0 78.262 21.611 21.612 56.651 21.612 78.262 0z" fill="#2962FF"/></svg>
       )</p>
     </footer>
+    </div>
   </body>
 </html>`;
 };

@@ -10,7 +10,7 @@ const cacheAge = 7 * dayInSecs;
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     const parsedReq = parseRequest(req);
-    const html = getHtml(parsedReq, isHTMLDebug);
+    const html = getHtml(parsedReq);
     if (isHTMLDebug) {
       res.setHeader("Content-Type", "text/html");
       res.end(html);
