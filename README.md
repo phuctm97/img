@@ -42,6 +42,8 @@ There is a limit to Vercel's free plan, so feel free to test the API on my websi
 
 ### V1
 
+Generic, non-personalized, less feature that V2.
+
 **URL**: `GET /api/v1/[slug]`
 
 **Query params**:
@@ -65,6 +67,8 @@ https://img.phuctm97.com/api/v1/**Hello**%20World.png?theme=light&md=1&fontSize=
 ```
 
 ### V2
+
+Personalized, more features.
 
 **URL**: `GET /api/v2/[slug]`
 
@@ -107,6 +111,8 @@ The project uses [Puppeteer] to launch and capture screenshot from a headless Ch
 
   - Change `parser.ts` to update query API.
   - Change `template.ts` to customize output images.
+
+- **images/avatar.jpg**: author's avatar used in V2.
 
 - **server/\*.ts**: utils to process HTML and capture screenshots.
 

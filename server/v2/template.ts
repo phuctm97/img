@@ -15,6 +15,10 @@ const readFont = (name: string) =>
 const rglr = readFont("Inter-Regular.woff2");
 const bold = readFont("Inter-Bold.woff2");
 const mono = readFont("Vera-Mono.woff2");
+const avatar = readFileSync(
+  path.join(process.cwd(), "images", "avatar.jpg"),
+  "base64"
+);
 
 const getCss = (
   theme: string,
@@ -134,7 +138,12 @@ const getCss = (
       font-size: 2rem;
       color: ${theme === "light" ? "#9ca3af" : "#6b7280"};
     }
-    footer p strong {
+    footer .avatar {
+      border-radius: 100%;
+      height: 2.25em;
+      margin-bottom: -0.5em;
+    }
+    footer .link {
       color: #2563eb;
     }
     footer p svg {
@@ -193,8 +202,10 @@ export const getHtml = (req: ParsedRequest) => {
     </main>
     <footer>
       <p>(
-        Available at ${emojify("🔗")} <strong>phuctm97.com</strong>
-        and <strong><span style="font-size:1.25em">@</span>phuctm97</strong> on
+        By <img class="avatar" alt="Minh-Phuc Tran" src="data:image/jpeg;charset=utf-8;base64,${avatar}"/>
+        <strong>Minh-Phuc Tran</strong>
+        at ${emojify("🔗")} <strong class="link">phuctm97.com</strong>
+        and <strong class="link"><span style="font-size:1.25em">@</span>phuctm97</strong> on
         <svg role="img" fill="#1da1f2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>Twitter</title><path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/></svg>
         + <svg role="img" fill="${
           theme === "light" ? "#181717" : "white"
