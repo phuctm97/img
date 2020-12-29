@@ -51,8 +51,8 @@ const getCss = (theme: string, fontSize: string) => {
     }
     body {
       background: ${background};
-      background-image: radial-gradient(circle at 25px 25px, ${radial} 2%, transparent 0%), radial-gradient(circle at 75px 75px, ${radial} 2%, transparent 0%);
-      background-size: 100px 100px;
+      background-image: radial-gradient(circle at 1.6rem 1.6rem, ${radial} 2%, transparent 0%), radial-gradient(circle at 4.7rem 4.7rem, ${radial} 2%, transparent 0%);
+      background-size: 6.25rem 6.25rem;
       font-family: 'Inter', sans-serif;
       min-height: 100vh;
       display: flex;
@@ -61,10 +61,10 @@ const getCss = (theme: string, fontSize: string) => {
       justify-content: center;
     }
     code {
-      color: #D400FF;
+      color: #d400ff;
       font-family: 'Vera';
       white-space: pre-wrap;
-      letter-spacing: -5px;
+      letter-spacing: -0.32rem;
     }
     code:before, code:after {
       content: '\`';
@@ -77,15 +77,15 @@ const getCss = (theme: string, fontSize: string) => {
       justify-items: center;
     }
     .logo {
-      margin: 0 75px;
+      margin: 0 4.7rem;
     }
     .plus {
-      color: #BBB;
+      color: #bbb;
       font-family: Times New Roman, Verdana;
-      font-size: 100px;
+      font-size: 6.25rem;
     }
     .spacer {
-      margin: 150px;
+      margin: 6.25rem;
     }
     .emoji {
       height: 1em;
