@@ -124,7 +124,7 @@ const getCss = (theme: string, fontSize: string, baseSize = "16px") => {
     }`;
 };
 
-const getImage = (src: string, width = "auto", height = "12rem") => `<img
+const getImage = (src: string, width = "auto", height = "12.5rem") => `<img
   class="logo"
   alt="Generated Image"
   src="${sanitizeHtml(src)}"
