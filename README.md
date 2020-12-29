@@ -1,6 +1,6 @@
 ![Generated image](https://img.phuctm97.com/api/v2/%F0%9F%8E%86%20**Imagegen**%20as%20a%20Service?&icons=Next.js&icons=Vercel)
 
-# 🎆 Imagegen as a Service
+# 🌠 Imagegen as a Service
 
 Imagegen (image generator) as a Service, built with [Next.js] and [Vercel].
 
