@@ -6,9 +6,17 @@ Imagegen (image generator) as a Service, built with Next.js and Vercel.
 
 ## What is this?
 
-This is an API that generates dynamic images for different purposes, is especially useful to generate cover images for distributing content (blogging, writing, podcast, videos, etc).
+This is an API that generates dynamic images for different purposes, is especially useful to generate cover images for distributing content:
 
-It's built and deployed serverless thanks to Next.js and Vercel, so there is no nothing to maintain. Moreover, thanks to Vercel's generous hobby plan, this is completely free for non-commercial use.
+- Blogging & writing.
+
+- Videos' thumbnails.
+
+- Open-source repositories' social images.
+
+- etc.
+
+It's built and deployed serverless thanks to Next.js and Vercel, so there is nothing to maintain. Moreover, thanks to Vercel's generous hobby plan, this is **completely free** for non-commercial use.
 
 ### Example
 
