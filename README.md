@@ -102,7 +102,7 @@ The project uses [Puppeteer] to launch and capture screenshot from a headless Ch
 
 - **server/\*.ts**: utils to process HTML and capture screenshots.
 
-- **pages/api/v1**, **pages/api/v2**: Next.js API routes to receive requests. You probably won't need to change this.
+- **pages/api/v1**, **pages/api/v2**: Next.js API routes to receive requests (You probably won't need to change this).
 
 - **fonts**: Fonts are loaded locally in **server/\*\*/\*.ts**. Replace with your fonts (optionally).
 
