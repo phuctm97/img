@@ -45,6 +45,10 @@ const getCss = (theme: string, fontSize: string) => {
       font-weight: normal;
       src: url(data:font/woff2;charset=utf-8;base64,${mono}) format("woff2");
     }
+    html, body {
+      margin: 0;
+      padding: 0;
+    }
     body {
       background: ${background};
       background-image: radial-gradient(circle at 25px 25px, ${radial} 2%, transparent 0%), radial-gradient(circle at 75px 75px, ${radial} 2%, transparent 0%);

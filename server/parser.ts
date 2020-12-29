@@ -27,7 +27,7 @@ export const parseRequest = (req: NextApiRequest) => {
     text: decodeURIComponent(text),
     theme: theme === "dark" ? "dark" : "light",
     md: md === "1" || md === "true",
-    fontSize: fontSize || "96px",
+    fontSize: fontSize || "1rem",
     images: getStringArray(images),
     widths: getStringArray(widths),
     heights: getStringArray(heights),
