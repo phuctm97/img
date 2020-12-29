@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { parseRequest } from "~server/parser";
-import { getHtml } from "~server/template";
 import { getScreenshot } from "~server/chromium";
+import { parseRequest } from "~server/v1/parser";
+import { getHtml } from "~server/v1/template";
 import { dayInSecs } from "~utils/time";
 import { isHTMLDebug } from "~utils/env";
 

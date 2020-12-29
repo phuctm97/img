@@ -1,6 +1,16 @@
 import { NextApiRequest } from "next";
 import { getStringArray } from "~utils/primitive";
-import { ParsedRequest } from "./types";
+
+export interface ParsedRequest {
+  fileType: "png" | "jpeg";
+  text: string;
+  theme: "light" | "dark";
+  md: boolean;
+  fontSize: string;
+  images: string[];
+  widths: string[];
+  heights: string[];
+}
 
 export const parseRequest = (req: NextApiRequest) => {
   const { query } = req;

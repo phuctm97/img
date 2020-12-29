@@ -1,7 +1,6 @@
 import puppeteer, { Page } from "puppeteer-core";
 import ChromeAWS from "chrome-aws-lambda";
 import { isChromeLocal } from "~utils/env";
-import { FileType } from "./types";
 
 const localExePath =
   (process.platform === "win32" &&
@@ -36,7 +35,7 @@ const getPage = async (isLocal = isChromeLocal) => {
 
 export const getScreenshot = async (
   html: string,
-  type: FileType,
+  type: NonNullable<puppeteer.ScreenshotOptions["type"]>,
   isLocal = isChromeLocal
 ) => {
   const page = await getPage(isLocal);

@@ -2,8 +2,8 @@ import path from "path";
 import { readFileSync } from "fs";
 import marked from "marked";
 import twemoji from "twemoji";
-import { sanitizeHtml } from "./sanitizer";
-import { ParsedRequest } from "./types";
+import { sanitizeHtml } from "~server/sanitizer";
+import { ParsedRequest } from "./parser";
 
 const emojify = (text: string) =>
   twemoji.parse(text, { folder: "svg", ext: ".svg" });
