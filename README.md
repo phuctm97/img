@@ -78,7 +78,11 @@ icons: string[];
 colors: string[];
 ```
 
-All query params are optional, a reasonable default will be used when necesssary.
+`icons` are loaded from [Simple Icons], use names appearing on its website as inputs here. Not found icons will be ignored.
+
+`colors` are valid CSS colors, or `default` to use Simple Icons's suggested colors, or `invert` to invert the default colors.
+
+All query params are optional, a reasonable default will be used when neccesary.
 
 **Example**:
 
@@ -105,6 +109,8 @@ The project uses [Puppeteer] to launch and capture screenshot from a headless Ch
 - **pages/api/v1**, **pages/api/v2**: Next.js API routes to receive requests (You probably won't need to change this).
 
 - **fonts**: Fonts are loaded locally in **server/\*\*/\*.ts**. Replace with your fonts (optionally).
+
+**Recommended approach**: copy **api/v1** + **server/v1** or **api/v2** + **server/v2** and make changes arcordingly, it won't accidentially crash your code this way.
 
 ## Author
 
