@@ -82,6 +82,8 @@ colors: string[];
 
 - **colors** are valid CSS colors, or `default` to use Simple Icons's suggested colors, or `invert` to invert the default colors.
 
+- **target** helps generate images suitable for distribution to a specific platform, currently supports DEV.to (`devto`) and Open Graph (`og`).
+
 All query params are optional, a reasonable default will be used when neccesary.
 
 **Example**:
