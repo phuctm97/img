@@ -2,9 +2,10 @@ import { NextApiRequest, NextApiResponse } from "next";
 import { parseRequest } from "~server/parser";
 import { getHtml } from "~server/template";
 import { getScreenshot } from "~server/chromium";
+import { dayInSecs } from "~utils/time";
+import { isChromeLocal, isHTMLDebug } from "~utils/env";
 
-const isChromeLocal = process.env.CHROME_REMOTE !== "1";
-const isHTMLDebug = process.env.HTML_DEBUG === "1";
+const cacheAge = 7 * dayInSecs;
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   try {
@@ -22,7 +23,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     res.setHeader("Content-Type", `image/${fileType}`);
     res.setHeader(
       "Cache-Control",
-      `public, immutable, no-transform, s-maxage=31536000, max-age=31536000`
+      `public, immutable, no-transform, s-maxage=${cacheAge}, max-age=${cacheAge}`
     );
     res.end(screenshot);
   } catch (err) {

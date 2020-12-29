@@ -1,16 +1,16 @@
 import { NextApiRequest } from "next";
+import { getStringArray } from "~utils/primitive";
 import { ParsedRequest } from "./types";
-import { getStringArray } from "./utils";
 
 export const parseRequest = (req: NextApiRequest) => {
   const { query } = req;
-  const { name, fontSize, images, widths, heights, theme, md } = query;
+  const { slug, fontSize, images, widths, heights, theme, md } = query;
 
-  if (Array.isArray(name)) throw new Error("Expected a single name.");
+  if (Array.isArray(slug)) throw new Error("Expected a single slug.");
   if (Array.isArray(fontSize)) throw new Error("Expected a single fontSize.");
   if (Array.isArray(theme)) throw new Error("Expected a single theme.");
 
-  const parts = name.split(".");
+  const parts = slug.split(".");
   let ext = "";
   let text = "";
   if (parts.length === 0) {
