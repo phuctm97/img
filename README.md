@@ -88,7 +88,7 @@ https://img.phuctm97.com/api/v2/%F0%9F%8E%86%20**Imagegen**%20as%20a%20Service?&
 
 ## Project structure
 
-The project use [Puppeteer] to launch and capture screenshot from a headless Chrome. Responses are cached for 7 days in increase performance and reduce loads.
+The project uses [Puppeteer] to launch and capture screenshot from a headless Chrome. Responses are cached for 7 days in increase performance and reduce loads.
 
 - **server/v1**: parse API v1 requests and generate static HTML.
 
