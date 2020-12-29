@@ -42,7 +42,7 @@ There is a limit to Vercel's free plan, so feel free to test the API on my websi
 
 ### V1
 
-Generic, non-personalized, less feature that V2.
+Generic, non-personalized, fewer features.
 
 **URL**: `GET /api/v1/[slug]`
 
