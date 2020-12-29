@@ -28,17 +28,15 @@ https://img.phuctm97.com/api/v2/%F0%9F%8E%86%20**Imagegen**%20as%20a%20Service?&
 
 ## How should you use it?
 
-There is a limit to Vercel's free plan, so feel free to test out the API on my website, but please don't use it directly on yours. Instead:
+There is a limit to Vercel's free plan, so feel free to test the API on my website, but please don't use it directly on yours. Instead:
 
-- Fork the repository.
+- [Fork the repository](https://github.com/phuctm97/img/fork).
 
 - Make changes to fit your need (see below, it's easy).
 
-- Create a Vercel account if you haven't had one.
+- Create a new Vercel project and import **your forked repository** (You'll need a Vercel account).
 
-- Create a new Vercel project and import **your forked repository**.
-
-- Done 🎉! Go to Vercel's deployment URL to see your deployment.
+- Done 🎉. Vercel will give you your deployment URL, check it out!
 
 ## API
 
