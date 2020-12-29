@@ -10,6 +10,8 @@
 
 Imagegen (image generator) as a Service, built with [Next.js] and [Vercel].
 
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https%3A%2F%2Fgithub.com%2Fphuctm97%2Fimg)
+
 ## What is this?
 
 This is a (REST) API service that generates dynamic images for different purposes, is especially useful to generate cover images for content distribution:
