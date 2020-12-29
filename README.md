@@ -36,7 +36,7 @@ There is a limit to Vercel's free plan, so feel free to test the API on my websi
 
 - Create a new Vercel project and import **your forked repository** (You'll need a Vercel account).
 
-- Done 🎉. Vercel will give you your deployment URL, check it out!
+- Done 🎉. Vercel will give you a deployment URL, check it out!
 
 ## API
 
