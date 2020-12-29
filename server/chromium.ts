@@ -40,7 +40,7 @@ export const getScreenshot = async (
   isLocal = isChromeLocal
 ) => {
   const page = await getPage(isLocal);
-  await page.setViewport({ width: 2048, height: 1170 });
+  await page.setViewport({ width: 1200, height: 630 }); // OG recommended image size
   await page.setContent(html);
   return page.screenshot({ type });
 };

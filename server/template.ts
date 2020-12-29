@@ -29,13 +29,13 @@ const getCss = (theme: string, fontSize: string) => {
   return `
     @font-face {
       font-family: 'Inter';
-      font-style:  normal;
+      font-style: normal;
       font-weight: normal;
       src: url(data:font/woff2;charset=utf-8;base64,${rglr}) format('woff2');
     }
     @font-face {
       font-family: 'Inter';
-      font-style:  normal;
+      font-style: normal;
       font-weight: bold;
       src: url(data:font/woff2;charset=utf-8;base64,${bold}) format('woff2');
     }
@@ -43,13 +43,14 @@ const getCss = (theme: string, fontSize: string) => {
       font-family: 'Vera';
       font-style: normal;
       font-weight: normal;
-      src: url(data:font/woff2;charset=utf-8;base64,${mono})  format("woff2");
+      src: url(data:font/woff2;charset=utf-8;base64,${mono}) format("woff2");
     }
     body {
       background: ${background};
       background-image: radial-gradient(circle at 25px 25px, ${radial} 2%, transparent 0%), radial-gradient(circle at 75px 75px, ${radial} 2%, transparent 0%);
       background-size: 100px 100px;
-      height: 100vh;
+      font-family: 'Inter', sans-serif;
+      min-height: 100vh;
       display: flex;
       text-align: center;
       align-items: center;
@@ -118,7 +119,6 @@ export const getHtml = (req: ParsedRequest) => {
     ${getCss(theme, fontSize)}
   </style>
   <body>
-    <div>
       <div class="spacer">
       <div class="logo-wrapper">
         ${images
@@ -131,7 +131,9 @@ export const getHtml = (req: ParsedRequest) => {
       <div class="heading">${emojify(
         md ? marked(text) : sanitizeHtml(text)
       )}</div>
-    </div>
+      <footer>
+        <p>Available at phuctm97.com and @phuctm97</p>
+      </footer>
   </body>
 </html>`;
 };
