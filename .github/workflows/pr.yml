@@ -23,8 +23,8 @@ jobs:
         with:
           args: --check .
 
-  build:
-    name: Build
+  type-check:
+    name: Type check
     runs-on: ubuntu-latest
     if: "!contains(github.event.head_commit.message, '[skip ci]')"
     steps:
@@ -46,4 +46,4 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-node-${{ env.NODE_VERSION }}-yarn-
       - run: yarn install --frozen-lockfile
-      - run: yarn build
+      - run: yarn type:check
