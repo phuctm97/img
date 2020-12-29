@@ -2,7 +2,7 @@
 
 # 🎆 Imagegen as a Service
 
-Imagegen (image generator) as a Service, built with Next.js and Vercel.
+Imagegen (image generator) as a Service, built with [Next.js] and [Vercel].
 
 ## What is this?
 
@@ -16,7 +16,7 @@ This is an API that generates dynamic images for different purposes, is especial
 
 - etc.
 
-It's built and deployed serverless thanks to Next.js and Vercel, so there is nothing to maintain. Moreover, thanks to Vercel's generous hobby plan, this is **completely free** for non-commercial use.
+It's built and deployed serverless thanks to Next.js and Vercel, so there is nothing to maintain. Moreover, thanks to Vercel's generous hobby plan, this is **completely free** for _non-commercial use_.
 
 ### Example
 
@@ -28,7 +28,7 @@ https://img.phuctm97.com/api/v2/%F0%9F%8E%86%20**Imagegen**%20as%20a%20Service?&
 
 ## How should you use it?
 
-There is a limit to Vercel's free plan, so feel free to test the API on my website, but please don't use it directly on yours. Instead:
+There is a limit to Vercel's free plan, so feel free to test the API on my website but please don't use it directly on yours. Instead:
 
 - [Fork the repository](https://github.com/phuctm97/img/fork).
 
@@ -58,7 +58,7 @@ widths: string[];
 heights: string[];
 ```
 
-All query params are optional, a reasonable default will be used when necesssary.
+All query params are optional, reasonable defaults will be used when necessary.
 
 **Example**:
 
@@ -82,15 +82,15 @@ icons: string[];
 colors: string[];
 ```
 
-- **text** supports Markdown syntax by default. Emojis are replaced with [Twemoji].
+- **text** supports Markdown syntax by default. Emojis are replaced with [Twemoji] variants.
 
-- **icons** are loaded from [Simple Icons], use names appearing on its website as inputs here. Not found icons will be ignored.
+- **icons** are loaded from [Simple Icons], use names appearing on its website as API inputs. Not found icons are ignored.
 
-- **colors** are valid CSS colors, or `default` to use Simple Icons's suggested colors, or `invert` to invert the default colors.
+- **colors** are valid CSS colors, or `default` to use Simple Icons' suggested colors, or `invert` to invert the default colors.
 
 - **target** helps generate images suitable for distribution to a specific platform, currently supports DEV.to (`devto`) and Open Graph (`og`).
 
-All query params are optional, a reasonable default will be used when neccesary.
+All query params are optional, reasonable defaults will be used when necessary.
 
 **Example**:
 
@@ -100,7 +100,7 @@ https://img.phuctm97.com/api/v2/%F0%9F%8E%86%20**Imagegen**%20as%20a%20Service?&
 
 ## Project structure
 
-The project uses [Puppeteer] to launch and capture screenshot from a headless Chrome. Responses are cached for 7 days to increase performance and reduce loads.
+The project uses [Puppeteer] to launch and capture screenshots from a headless Chrome. Responses are cached for 7 days to increase performance and reduce loads.
 
 - **server/v1**: parse API v1 requests and generate static HTML.
 
@@ -112,11 +112,11 @@ The project uses [Puppeteer] to launch and capture screenshot from a headless Ch
   - Change `parser.ts` to update query API.
   - Change `template.ts` to customize output images.
 
-- **images/avatar.jpg**: author's avatar used in V2.
+- **images/avatar.jpg**: author's avatar used in V2. Replace with yours.
 
 - **server/\*.ts**: utils to process HTML and capture screenshots.
 
-- **pages/api/v1**, **pages/api/v2**: Next.js API routes to receive requests (You probably won't need to change this).
+- **pages/api/v1**, **pages/api/v2**: Next.js API routes to receive requests (you probably won't need to change this).
 
 - **fonts**: Fonts are loaded locally in **server/\*\*/\*.ts**. Replace with your fonts (optionally).
 
@@ -132,8 +132,9 @@ Heavily inspired by Vercel's [og-image].
 
 <!-- Links -->
 
-[img.phuctm97.com]: https://img.phuctm97.com
 [@phuctm97]: https://twitter.com/phuctm97
+[nextjs]: https://nextjs.org
+[vercel]: https://vercel.com
 [simple icons]: https://simpleicons.org
 [twemoji]: https://twemoji.twitter.com
 [og-image]: https://github.com/vercel/og-image
