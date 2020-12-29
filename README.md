@@ -2,15 +2,15 @@
 
 # 🌠 Imagegen as a Service (Next.js)
 
-[![Deployment status][deployment status]][deployment link]
-[![Checks status][checks status]][checks link]
-[![Dependabot status][dependabot status]][dependabot link]
-[![Code style][code style]][code style link]
-[![License info][license info]][license link]
+[![Deployment status][deployment status]][deployment url]
+[![Checks status][checks status]][checks url]
+[![Dependabot status][dependabot status]][dependabot url]
+[![Code style][code style]][code style url]
+[![License info][license info]][license url]
 
 Imagegen (image generator) as a Service, built with [Next.js] and [Vercel].
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https%3A%2F%2Fgithub.com%2Fphuctm97%2Fimg)
+[![Deploy with Vercel][vercel button]][vercel deploy url]
 
 ## What is this?
 
@@ -38,7 +38,7 @@ https://img.phuctm97.com/api/v2/%F0%9F%8E%86%20**Imagegen**%20as%20a%20Service?&
 
 There is a [limit to Vercel's free plan][vercel limit], so feel free to test the API on my website but please don't use it directly on yours. Instead:
 
-- [Fork the repository](https://github.com/phuctm97/img/fork).
+- [Fork the repository][fork repo].
 
 - Make changes to fit your needs (see below, it's easy).
 
@@ -94,7 +94,7 @@ colors: string[]
 
 - **target** defines format suitable for distribution to a specific channel, currently supports Open Graph (`og`) and DEV.to (`devto`) .
 
-- **icons** are loaded from [Simple Icons]. Use names appearing on its website as API inputs. Not found icons are ignored.
+- **icons** are loaded from [Simple Icons]. Use names appearing on Simple Icons' website as API inputs. Not found icons are ignored.
 
 - **colors** are valid CSS colors, or `default` to use Simple Icons' suggested colors, or `invert` to invert the default colors.
 
@@ -126,9 +126,35 @@ The project uses [Puppeteer] to launch and capture screenshots from a headless C
 
 - **pages/api/v1**, **pages/api/v2**: Next.js API routes to receive requests (you probably won't need to change this).
 
-- **fonts**: Fonts are loaded locally in **server/\*\*/\*.ts**. Replace with your fonts (optionally).
+- **fonts**: Fonts are loaded locally in **server/\*/template.ts**. Replace with your fonts (if necessary).
 
-**Recommended approach**: copy **api/v1** + **server/v1** (or **api/v2** + **server/v2**) to v3, then make changes arcordingly. It won't accidentially crash your code this way.
+**Recommended approach**: copy **api/v1** + **server/v1** (or **api/v2** + **server/v2**) to **v3**, then make changes arcordingly. It won't accidentially crash your code this way.
+
+## Development
+
+### Requirements
+
+- Node.js 12.
+
+- Yarn 1.22+.
+
+- Google Chrome.
+
+### Setup
+
+Install dependencies:
+
+```bash
+yarn
+```
+
+Start development server:
+
+```bash
+yarn dev
+```
+
+See [package.json] for all pre-configured scripts.
 
 ## Author
 
@@ -145,16 +171,20 @@ Heavily inspired by Vercel's [og-image].
 [dependabot status]: https://img.shields.io/badge/dependabot-enabled-025e8c?logo=Dependabot
 [license info]: https://img.shields.io/github/license/phuctm97/img
 [code style]: https://img.shields.io/badge/code%20style-prettier-F7B93E?logo=Prettier
+[vercel button]: https://vercel.com/button
+[deployment url]: https://github.com/phuctm97/img/deployments/activity_log?environment=Production
+[checks url]: https://github.com/phuctm97/img/actions?query=workflow%3APR+branch%3Amaster
+[dependabot url]: https://github.com/phuctm97/img/blob/master/.github/dependabot.yml
+[code style url]: https://prettier.io
+[license url]: /LICENSE
+[vercel deploy url]: https://vercel.com/new/git/external?repository-url=https%3A%2F%2Fgithub.com%2Fphuctm97%2Fimg
 
 <!-- Links -->
 
-[deployment link]: https://github.com/phuctm97/img/deployments/activity_log?environment=Production
-[checks link]: https://github.com/phuctm97/img/actions?query=workflow%3APR+branch%3Amaster
-[dependabot link]: https://github.com/phuctm97/img/blob/master/.github/dependabot.yml
-[code style link]: https://prettier.io
-[license link]: /LICENSE
 [cover image]: https://img.phuctm97.com/api/v2/%F0%9F%8E%86%20**Imagegen**%20as%20a%20Service?&icons=Next.js&icons=Vercel
+[fork repo]: https://github.com/phuctm97/img/fork
 [@phuctm97]: https://twitter.com/phuctm97
+[package.json]: /package.json
 [next.js]: https://nextjs.org
 [vercel]: https://vercel.com
 [vercel limit]: https://vercel.com/docs/platform/fair-use-policy#typical-monthly-usage-guidelines
