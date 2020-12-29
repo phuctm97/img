@@ -1,10 +1,12 @@
+const package = require("./package.json");
+
 module.exports = {
   async redirects() {
     return [
       {
         source: "/",
-        destination: "https://github.com/phuctm97/img",
-        permanent: true,
+        destination: package.repository,
+        permanent: false,
       },
     ];
   },
