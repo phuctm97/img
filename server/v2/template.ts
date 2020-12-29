@@ -129,7 +129,9 @@ const getLogo = (name: string, color?: string) => {
   const logo = simpleIcons.get(name);
   if (!logo) return;
 
-  const fill = (color && color !== "invert" && color) || `#${logo.hex}`;
+  const fill =
+    (color && color !== "invert" && color !== "default" && color) ||
+    `#${logo.hex}`;
   const filter = color === "invert" ? "invert(100%)" : "none";
   return `<svg role="img" class="logo" fill="${fill}" style="filter:${filter};" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
     <title>${logo.title}</title>
