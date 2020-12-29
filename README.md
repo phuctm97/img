@@ -88,6 +88,20 @@ All query params are optional, a reasonable default will be used when necesssary
 https://img.phuctm97.com/api/v2/%F0%9F%8E%86%20**Imagegen**%20as%20a%20Service?&icons=Next.js&icons=Vercel
 ```
 
+## Project structure
+
+The project use [Puppeteer] to launch and capture screenshot from a headless Chrome.
+
+- **server/v1**: parses API v1 requests and generates static HTML. Update `parser.ts` to change query API, `template.ts` to change how the image looks.
+
+- **server/v2**: parses API v2 requests and generates static HTML. Update `parser.ts` to change query API, `template.ts` to change how the image looks.
+
+- **server/\*.ts**: utils to process HTML and capture screenshots.
+
+- **pages/api/v1**, **pages/api/v2**: Next.js API routes to receive requests. You probably won't need to change this.
+
+- **fonts**: Fonts are loaded locally in **server/\*\*.ts**. Replace with your fonts (optionally).
+
 ## Author
 
 Made by ([@phuctm97]).
@@ -101,3 +115,4 @@ Heavily inspired by Vercel's [og-image].
 [img.phuctm97.com]: https://img.phuctm97.com
 [@phuctm97]: https://twitter.com/phuctm97
 [og-image]: https://github.com/vercel/og-image
+[puppeteer]: https://github.com/puppeteer/puppeteer
