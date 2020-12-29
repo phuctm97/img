@@ -2,6 +2,12 @@
 
 # 🌠 Imagegen as a Service (Next.js)
 
+![Deployment status][deployment status]
+![Checks status][checks status]
+![Dependabot status][dependabot status]
+![Code style][code style]
+![License info][license info]
+
 Imagegen (image generator) as a Service, built with [Next.js] and [Vercel].
 
 ## What is this?
@@ -129,6 +135,14 @@ Made by ([@phuctm97]).
 ## Thanks
 
 Heavily inspired by Vercel's [og-image].
+
+<!-- Badges -->
+
+[deployment status]: https://img.shields.io/github/deployments/phuctm97/img/production?label=deployment&logo=Vercel
+[checks status]: https://img.shields.io/github/checks-status/phuctm97/img/master?logo=Github
+[dependabot status]: https://img.shields.io/badge/dependabot-enabled-025e8c?logo=Dependabot
+[license info]: https://img.shields.io/github/license/phuctm97/img
+[code style]: https://img.shields.io/badge/code%20style-prettier-F7B93E?logo=Prettier
 
 <!-- Links -->
 
