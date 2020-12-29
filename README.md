@@ -1,9 +1,10 @@
-<h1 align="center">🎆 Imagegen as a Service</h1>
-
 ![Generated image](https://img.phuctm97.com/api/v2/%F0%9F%8E%86%20**Imagegen**%20as%20a%20Service?&icons=Next.js&icons=Vercel)
 
-<p align="center">Imagegen (image generator) as a Service, built with Next.js and Vercel.</p>
-<p align="center">🔗 <a href="https://img.phuctm97.com">img.phuctm97.com</a></p>
+# 🎆 Imagegen as a Service
+
+> 🔗 https://img.phuctm97.com
+
+Imagegen (image generator) as a Service, built with Next.js and Vercel.
 
 ## What is this?
 
