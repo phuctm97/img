@@ -78,9 +78,9 @@ icons: string[];
 colors: string[];
 ```
 
-`icons` are loaded from [Simple Icons], use names appearing on its website as inputs here. Not found icons will be ignored.
+- **icons** are loaded from [Simple Icons], use names appearing on its website as inputs here. Not found icons will be ignored.
 
-`colors` are valid CSS colors, or `default` to use Simple Icons's suggested colors, or `invert` to invert the default colors.
+- **colors** are valid CSS colors, or `default` to use Simple Icons's suggested colors, or `invert` to invert the default colors.
 
 All query params are optional, a reasonable default will be used when neccesary.
 
@@ -124,5 +124,6 @@ Heavily inspired by Vercel's [og-image].
 
 [img.phuctm97.com]: https://img.phuctm97.com
 [@phuctm97]: https://twitter.com/phuctm97
+[simple icons]: https://simpleicons.org
 [og-image]: https://github.com/vercel/og-image
 [puppeteer]: https://github.com/puppeteer/puppeteer
