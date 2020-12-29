@@ -92,9 +92,15 @@ https://img.phuctm97.com/api/v2/%F0%9F%8E%86%20**Imagegen**%20as%20a%20Service?&
 
 The project use [Puppeteer] to launch and capture screenshot from a headless Chrome.
 
-- **server/v1**: parses API v1 requests and generates static HTML. Update `parser.ts` to change query API, `template.ts` to change how the image looks.
+- **server/v1**: parse API v1 requests and generate static HTML.
 
-- **server/v2**: parses API v2 requests and generates static HTML. Update `parser.ts` to change query API, `template.ts` to change how the image looks.
+  - Change `parser.ts` to update query API.
+  - Change `template.ts` to customize output images.
+
+- **server/v2**: parse API v2 requests and generate static HTML.
+
+  - Change `parser.ts` to update query API.
+  - Change `template.ts` to customize output images.
 
 - **server/\*.ts**: utils to process HTML and capture screenshots.
 
