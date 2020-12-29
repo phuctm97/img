@@ -16,7 +16,7 @@ const rglr = readFont("Inter-Regular.woff2");
 const bold = readFont("Inter-Bold.woff2");
 const mono = readFont("Vera-Mono.woff2");
 
-const getCss = (theme: string, fontSize: string) => {
+const getCss = (theme: string, fontSize: string, baseSize = "16px") => {
   let background = "white";
   let foreground = "black";
   let radial = "lightgray";
@@ -44,6 +44,9 @@ const getCss = (theme: string, fontSize: string) => {
       font-style: normal;
       font-weight: normal;
       src: url(data:font/woff2;charset=utf-8;base64,${mono}) format("woff2");
+    }
+    html {
+      font-size: ${baseSize};
     }
     html, body {
       margin: 0;
@@ -112,7 +115,7 @@ const getImage = (src: string, width = "auto", height = "225") => `<img
 
 const getPlusSign = (i: number) => (i === 0 ? "" : '<div class="plus">+</div>');
 
-export const getHtml = (req: ParsedRequest) => {
+export const getHtml = (req: ParsedRequest, isDebug = false) => {
   const { text, theme, md, fontSize, images, widths, heights } = req;
   return `<!DOCTYPE html>
 <html>
@@ -120,7 +123,7 @@ export const getHtml = (req: ParsedRequest) => {
   <title>Generated Image</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
-    ${getCss(theme, fontSize)}
+    ${getCss(theme, fontSize, isDebug ? "16px" : "12px")}
   </style>
   <body>
       <div class="spacer">
