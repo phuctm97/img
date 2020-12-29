@@ -2,11 +2,11 @@
 
 # 🌠 Imagegen as a Service (Next.js)
 
-![Deployment status][deployment status]
-![Checks status][checks status]
-![Dependabot status][dependabot status]
-![Code style][code style]
-![License info][license info]
+[![Deployment status][deployment status]][deployment link]
+[![Checks status][checks status]][checks link]
+[![Dependabot status][dependabot status]][dependabot link]
+[![Code style][code style]][code style link]
+[![License info][license info]][license link]
 
 Imagegen (image generator) as a Service, built with [Next.js] and [Vercel].
 
@@ -146,6 +146,11 @@ Heavily inspired by Vercel's [og-image].
 
 <!-- Links -->
 
+[deployment link]: https://github.com/phuctm97/img/deployments/activity_log?environment=Production
+[checks link]: https://github.com/phuctm97/img/actions?query=workflow%3APR+branch%3Amaster
+[dependabot link]: https://github.com/phuctm97/img/blob/master/.github/dependabot.yml
+[code style link]: https://prettier.io
+[license link]: /LICENSE
 [cover image]: https://img.phuctm97.com/api/v2/%F0%9F%8E%86%20**Imagegen**%20as%20a%20Service?&icons=Next.js&icons=Vercel
 [@phuctm97]: https://twitter.com/phuctm97
 [next.js]: https://nextjs.org
