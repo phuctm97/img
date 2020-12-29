@@ -133,7 +133,7 @@ Heavily inspired by Vercel's [og-image].
 <!-- Links -->
 
 [@phuctm97]: https://twitter.com/phuctm97
-[nextjs]: https://nextjs.org
+[next.js]: https://nextjs.org
 [vercel]: https://vercel.com
 [simple icons]: https://simpleicons.org
 [twemoji]: https://twemoji.twitter.com
