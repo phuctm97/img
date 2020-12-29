@@ -49,7 +49,7 @@ There is a limit to Vercel's free plan, so feel free to test the API on my websi
 ```yml
 text: string.(png|jpg);
 theme: "light" | "dark";
-md: boolean;
+md: boolean; # Enable basic Markdown syntax or not.
 fontSize: string;
 images: string[];
 widths: string[];
@@ -71,12 +71,14 @@ https://img.phuctm97.com/api/v1/**Hello**%20World.png?theme=light&md=1&fontSize=
 **Query params**:
 
 ```yml
-text: string.(png|jpg);
+text: markdown.(png|jpg);
 target: "devto" | "og";
 theme: "light" | "dark";
 icons: string[];
 colors: string[];
 ```
+
+- **text** supports Markdown syntax by default. Emojis are replaced with [Twemoji].
 
 - **icons** are loaded from [Simple Icons], use names appearing on its website as inputs here. Not found icons will be ignored.
 
@@ -127,5 +129,6 @@ Heavily inspired by Vercel's [og-image].
 [img.phuctm97.com]: https://img.phuctm97.com
 [@phuctm97]: https://twitter.com/phuctm97
 [simple icons]: https://simpleicons.org
+[twemoji]: https://twemoji.twitter.com
 [og-image]: https://github.com/vercel/og-image
 [puppeteer]: https://github.com/puppeteer/puppeteer
