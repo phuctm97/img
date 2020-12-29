@@ -1,16 +1,26 @@
 import { NextApiRequest } from "next";
-import { ParsedRequest } from "./types";
-import { getStringArray } from "./utils";
+import { getStringArray } from "~utils/primitive";
+
+export interface ParsedRequest {
+  fileType: "png" | "jpeg";
+  text: string;
+  theme: "light" | "dark";
+  md: boolean;
+  fontSize: string;
+  images: string[];
+  widths: string[];
+  heights: string[];
+}
 
 export const parseRequest = (req: NextApiRequest) => {
   const { query } = req;
-  const { name, fontSize, images, widths, heights, theme, md } = query;
+  const { slug, fontSize, images, widths, heights, theme, md } = query;
 
-  if (Array.isArray(name)) throw new Error("Expected a single name.");
+  if (Array.isArray(slug)) throw new Error("Expected a single slug.");
   if (Array.isArray(fontSize)) throw new Error("Expected a single fontSize.");
   if (Array.isArray(theme)) throw new Error("Expected a single theme.");
 
-  const parts = name.split(".");
+  const parts = slug.split(".");
   let ext = "";
   let text = "";
   if (parts.length === 0) {
@@ -27,7 +37,7 @@ export const parseRequest = (req: NextApiRequest) => {
     text: decodeURIComponent(text),
     theme: theme === "dark" ? "dark" : "light",
     md: md === "1" || md === "true",
-    fontSize: fontSize || "96px",
+    fontSize: fontSize || "6.5rem",
     images: getStringArray(images),
     widths: getStringArray(widths),
     heights: getStringArray(heights),

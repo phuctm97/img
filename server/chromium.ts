@@ -1,6 +1,6 @@
 import puppeteer, { Page } from "puppeteer-core";
 import ChromeAWS from "chrome-aws-lambda";
-import { FileType } from "./types";
+import { isChromeLocal } from "~utils/env";
 
 const localExePath =
   (process.platform === "win32" &&
@@ -8,7 +8,7 @@ const localExePath =
   (process.platform === "linux" && "/usr/bin/google-chrome") ||
   "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome";
 
-const getOptions = async (isLocal: boolean) =>
+const getOptions = async (isLocal = isChromeLocal) =>
   isLocal
     ? {
         args: [],
@@ -23,7 +23,7 @@ const getOptions = async (isLocal: boolean) =>
 
 let cachedPage: Page | null;
 
-const getPage = async (isLocal: boolean) => {
+const getPage = async (isLocal = isChromeLocal) => {
   if (cachedPage) return cachedPage;
 
   const options = await getOptions(isLocal);
@@ -35,11 +35,11 @@ const getPage = async (isLocal: boolean) => {
 
 export const getScreenshot = async (
   html: string,
-  type: FileType,
-  isLocal: boolean
+  type: NonNullable<puppeteer.ScreenshotOptions["type"]>,
+  { isLocal = isChromeLocal, width = 1200, height = 630 }
 ) => {
   const page = await getPage(isLocal);
-  await page.setViewport({ width: 2048, height: 1170 });
+  await page.setViewport({ width, height }); // OG recommended image size
   await page.setContent(html);
   return page.screenshot({ type });
 };

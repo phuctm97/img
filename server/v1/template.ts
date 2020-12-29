@@ -1,9 +1,9 @@
-import { readFileSync } from "fs";
 import path from "path";
+import { readFileSync } from "fs";
 import marked from "marked";
-import { sanitizeHtml } from "./sanitizer";
-import { ParsedRequest } from "./types";
 import twemoji from "twemoji";
+import { sanitizeHtml } from "~server/sanitizer";
+import { ParsedRequest } from "./parser";
 
 const emojify = (text: string) =>
   twemoji.parse(text, { folder: "svg", ext: ".svg" });
@@ -16,7 +16,7 @@ const rglr = readFont("Inter-Regular.woff2");
 const bold = readFont("Inter-Bold.woff2");
 const mono = readFont("Vera-Mono.woff2");
 
-const getCss = (theme: string, fontSize: string) => {
+const getCss = (theme: string, fontSize: string, baseSize = "16px") => {
   let background = "white";
   let foreground = "black";
   let radial = "lightgray";
@@ -29,13 +29,13 @@ const getCss = (theme: string, fontSize: string) => {
   return `
     @font-face {
       font-family: 'Inter';
-      font-style:  normal;
+      font-style: normal;
       font-weight: normal;
       src: url(data:font/woff2;charset=utf-8;base64,${rglr}) format('woff2');
     }
     @font-face {
       font-family: 'Inter';
-      font-style:  normal;
+      font-style: normal;
       font-weight: bold;
       src: url(data:font/woff2;charset=utf-8;base64,${bold}) format('woff2');
     }
@@ -43,23 +43,29 @@ const getCss = (theme: string, fontSize: string) => {
       font-family: 'Vera';
       font-style: normal;
       font-weight: normal;
-      src: url(data:font/woff2;charset=utf-8;base64,${mono})  format("woff2");
+      src: url(data:font/woff2;charset=utf-8;base64,${mono}) format("woff2");
+    }
+    html {
+      font-size: ${baseSize};
     }
     body {
+      font-family: 'Inter', sans-serif;
       background: ${background};
-      background-image: radial-gradient(circle at 25px 25px, ${radial} 2%, transparent 0%), radial-gradient(circle at 75px 75px, ${radial} 2%, transparent 0%);
-      background-size: 100px 100px;
+      background-image: radial-gradient(circle at 1.5rem 1.5rem, ${radial} 2%, transparent 0%), radial-gradient(circle at 5rem 5rem, ${radial} 2%, transparent 0%);
+      background-size: 6.5rem 6.5rem;
+      width: 100vw;
       height: 100vh;
       display: flex;
+      flex-direction: column;
       text-align: center;
       align-items: center;
       justify-content: center;
     }
     code {
-      color: #D400FF;
+      color: #d400ff;
       font-family: 'Vera';
       white-space: pre-wrap;
-      letter-spacing: -5px;
+      letter-spacing: -0.32rem;
     }
     code:before, code:after {
       content: '\`';
@@ -72,15 +78,12 @@ const getCss = (theme: string, fontSize: string) => {
       justify-items: center;
     }
     .logo {
-      margin: 0 75px;
+      margin: 0 4.5rem;
     }
     .plus {
-      color: #BBB;
-      font-family: Times New Roman, Verdana;
-      font-size: 100px;
-    }
-    .spacer {
-      margin: 150px;
+      color: #bbb;
+      font-family: 'Times New Roman', Verdana;
+      font-size: 6.25rem;
     }
     .emoji {
       height: 1em;
@@ -97,17 +100,16 @@ const getCss = (theme: string, fontSize: string) => {
     }`;
 };
 
-const getImage = (src: string, width = "auto", height = "225") => `<img
+const getImage = (src: string, width = "auto", height = "18rem") => `<img
   class="logo"
   alt="Generated Image"
   src="${sanitizeHtml(src)}"
-  width="${sanitizeHtml(width)}"
-  height="${sanitizeHtml(height)}"
+  style="width:${sanitizeHtml(width)};height:${sanitizeHtml(height)};"
 />`;
 
 const getPlusSign = (i: number) => (i === 0 ? "" : '<div class="plus">+</div>');
 
-export const getHtml = (req: ParsedRequest) => {
+export const getHtml = (req: ParsedRequest, isDebug = false) => {
   const { text, theme, md, fontSize, images, widths, heights } = req;
   return `<!DOCTYPE html>
 <html>
@@ -115,23 +117,17 @@ export const getHtml = (req: ParsedRequest) => {
   <title>Generated Image</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
-    ${getCss(theme, fontSize)}
+    ${getCss(theme, fontSize, isDebug ? "16px" : "10px")}
   </style>
   <body>
-    <div>
-      <div class="spacer">
-      <div class="logo-wrapper">
-        ${images
-          .map(
-            (img, i) => getPlusSign(i) + getImage(img, widths[i], heights[i])
-          )
-          .join("")}
-      </div>
-      <div class="spacer">
-      <div class="heading">${emojify(
-        md ? marked(text) : sanitizeHtml(text)
-      )}</div>
+    <div class="logo-wrapper">
+      ${images
+        .map((img, i) => getPlusSign(i) + getImage(img, widths[i], heights[i]))
+        .join("")}
     </div>
+    <div class="heading">${emojify(
+      md ? marked(text) : sanitizeHtml(text)
+    )}</div>
   </body>
 </html>`;
 };
