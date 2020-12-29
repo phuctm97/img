@@ -1,10 +1,10 @@
-# 🌠 img
+# 🌠 [img.phuctm97.com]
 
-Preview images as a Service, built with Next.js and Vercel.
+Imagegen (image generator) as a Service, built with Next.js and Vercel.
 
-## Authors
+## Author
 
-- Minh-Phuc Tran ([@phuctm97]).
+Made by ([@phuctm97]).
 
 ## Thanks
 
@@ -12,5 +12,6 @@ Heavily inspired by Vercel's [og-image].
 
 <!-- Links -->
 
+[img.phuctm97.com]: https://img.phuctm97.com
 [@phuctm97]: https://twitter.com/phuctm97
 [og-image]: https://github.com/vercel/og-image
