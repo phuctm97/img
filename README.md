@@ -106,7 +106,7 @@ The project use [Puppeteer] to launch and capture screenshot from a headless Chr
 
 - **pages/api/v1**, **pages/api/v2**: Next.js API routes to receive requests. You probably won't need to change this.
 
-- **fonts**: Fonts are loaded locally in **server/\*\*.ts**. Replace with your fonts (optionally).
+- **fonts**: Fonts are loaded locally in **server/\*\*/\*.ts**. Replace with your fonts (optionally).
 
 ## Author
 
