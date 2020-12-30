@@ -1,7 +1,7 @@
 import { NextApiRequest } from "next";
 import { splitNameAndExtension, toStringArray } from "~utils/primitive";
 
-export interface ParsedRequest {
+export type RenderProps = {
   fileType: "png" | "jpeg";
   text: string;
   theme: "light" | "dark";
@@ -10,8 +10,13 @@ export interface ParsedRequest {
   images: string[];
   widths: string[];
   heights: string[];
-}
+};
 
+/**
+ * Parses API request into rendering props.
+ *
+ * @param req Incoming request
+ */
 export const parseRequest = (req: NextApiRequest) => {
   const { slug, fontSize, images, widths, heights, theme, md } = req.query;
 
@@ -20,7 +25,7 @@ export const parseRequest = (req: NextApiRequest) => {
   if (Array.isArray(theme)) throw new Error("Expected a single theme.");
 
   const [text, ext] = splitNameAndExtension(slug);
-  const parsedReq: ParsedRequest = {
+  const props: RenderProps = {
     fileType: ext === "jpeg" || ext === "jpg" ? "jpeg" : "png",
     text: decodeURIComponent(text),
     theme: theme === "dark" ? "dark" : "light",
@@ -31,5 +36,5 @@ export const parseRequest = (req: NextApiRequest) => {
     heights: toStringArray(heights),
   };
 
-  return parsedReq;
+  return props;
 };
