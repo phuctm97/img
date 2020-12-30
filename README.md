@@ -12,6 +12,9 @@ Imagegen (image generator) as a Service, built with [Next.js] and [Vercel].
 
 [![Deploy with Vercel][vercel button]][vercel deploy url]
 
+> ℹ️ If you prefer Node.js + Docker over Next.js + Serverless, [checkout this
+> repository][node-based repo].
+
 ## What is this?
 
 This is a (REST) API service that generates dynamic images for different purposes, is especially useful to generate cover images for content distribution:
@@ -183,6 +186,7 @@ Heavily inspired by Vercel's [og-image].
 
 [cover image]: https://img.phuctm97.com/api/v2/%F0%9F%8E%86%20**Imagegen**%20as%20a%20Service?&icons=Next.js&icons=Vercel
 [fork repo]: https://github.com/phuctm97/img/fork
+[node-based repo]: https://github.com/phuctm97/img-nodejs
 [@phuctm97]: https://twitter.com/phuctm97
 [package.json]: /package.json
 [next.js]: https://nextjs.org
