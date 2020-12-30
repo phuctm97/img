@@ -33,6 +33,13 @@ const getPage = async (isLocal = isChromeLocal) => {
   return cachedPage;
 };
 
+/**
+ * Renders an HTML and takes screenshot.
+ *
+ * @param html HTML to render
+ * @param type Output image type (JPEG or PNG)
+ * @param opts Browser options
+ */
 export const getScreenshot = async (
   html: string,
   type: NonNullable<puppeteer.ScreenshotOptions["type"]>,
