@@ -12,7 +12,7 @@ Imagegen (image generator) as a Service, built with [Next.js] and [Vercel].
 
 [![Deploy with Vercel][vercel button]][vercel deploy url]
 
-> ℹ️ If you prefer Node.js + Docker over Next.js + Serverless, [checkout this
+> ℹ️ If you prefer Node.js + Docker (DigitalOcean, AWS, GCP) over Next.js + Vercel, [checkout this
 > repository][node-based repo].
 
 ## What is this?
