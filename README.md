@@ -12,7 +12,7 @@ Imagegen (image generator) as a Service, built with [Next.js] and [Vercel].
 
 [![Deploy with Vercel][vercel button]][vercel deploy url]
 
-> ℹ️ If you prefer Node.js + Docker (DigitalOcean, AWS, GCP) over Next.js +
+> ℹ️ If you prefer Node.js + Docker (+ AWS, GCP, DigitalOcean, etc) to Next.js +
 > Vercel, [checkout this repository][node-based repo].
 
 ## What is this?
@@ -32,6 +32,9 @@ distribution:
 It's built and deployed _serverlessly_ thanks to Next.js and Vercel, so there is
 nothing to maintain. Moreover, thanks to Vercel's generous hobby plan, this
 service is **completely free** for _non-commercial_ use.
+
+> ℹ️ If you prefer other cloud platforms (AWS, GCP, DigitalOcean, etc) to Vercel
+> for commercial use, [checkout Node.js + Docker version][node-based repo].
 
 ### Example
 
