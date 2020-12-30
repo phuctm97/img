@@ -1,3 +1,8 @@
+/**
+ * Converts input into a string array that best describes the input.
+ *
+ * @param stringOrArray Input value
+ */
 export const toStringArray = (
   stringOrArray: string[] | string | undefined
 ): string[] => {
@@ -6,6 +11,12 @@ export const toStringArray = (
   return [stringOrArray];
 };
 
+/**
+ * Splits a string into name and extension. * Extension is what comes after the last dot `.`
+ * in the string, name is the rest.
+ *
+ * @param str Input string
+ */
 export const splitNameAndExtension = (str: string): [string, string] => {
   const parts = str.split(".");
   let ext = "";
