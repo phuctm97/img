@@ -1,22 +1,17 @@
-import path from "path";
-import { readFileSync } from "fs";
 import marked from "marked";
 import twemoji from "twemoji";
-import { sanitizeHtml } from "~server/sanitizer";
-import { ParsedRequest } from "./parser";
+import { readFont } from "~server/asset";
+import { sanitizeHTML } from "~server/sanitizer";
+import { RenderProps } from "./parser";
 
 const emojify = (text: string) =>
   twemoji.parse(text, { folder: "svg", ext: ".svg" });
-
-const fontsDir = path.join(process.cwd(), "fonts");
-const readFont = (name: string) =>
-  readFileSync(path.join(fontsDir, name)).toString("base64");
 
 const rglr = readFont("Inter-Regular.woff2");
 const bold = readFont("Inter-Bold.woff2");
 const mono = readFont("Vera-Mono.woff2");
 
-const getCss = (theme: string, fontSize: string, baseSize = "16px") => {
+const getCSS = (theme: string, textFontSize: string, htmlFontSize: string) => {
   let background = "white";
   let foreground = "black";
   let radial = "lightgray";
@@ -26,6 +21,7 @@ const getCss = (theme: string, fontSize: string, baseSize = "16px") => {
     foreground = "white";
     radial = "dimgray";
   }
+
   return `
     @font-face {
       font-family: 'Inter';
@@ -43,10 +39,10 @@ const getCss = (theme: string, fontSize: string, baseSize = "16px") => {
       font-family: 'Vera';
       font-style: normal;
       font-weight: normal;
-      src: url(data:font/woff2;charset=utf-8;base64,${mono}) format("woff2");
+      src: url(data:font/woff2;charset=utf-8;base64,${mono}) format('woff2');
     }
     html {
-      font-size: ${baseSize};
+      font-size: ${htmlFontSize};
     }
     body {
       font-family: 'Inter', sans-serif;
@@ -93,40 +89,47 @@ const getCss = (theme: string, fontSize: string, baseSize = "16px") => {
     }
     .heading {
       font-family: 'Inter', sans-serif;
-      font-size: ${sanitizeHtml(fontSize)};
+      font-size: ${sanitizeHTML(textFontSize)};
       font-style: normal;
       color: ${foreground};
       line-height: 1.8;
     }`;
 };
 
-const getImage = (src: string, width = "auto", height = "18rem") => `<img
+const getImg = (src: string, width = "auto", height = "18rem") => `
+<img
   class="logo"
   alt="Generated Image"
-  src="${sanitizeHtml(src)}"
-  style="width:${sanitizeHtml(width)};height:${sanitizeHtml(height)};"
+  src="${sanitizeHTML(src)}"
+  style="width:${sanitizeHTML(width)};height:${sanitizeHTML(height)};"
 />`;
 
 const getPlusSign = (i: number) => (i === 0 ? "" : '<div class="plus">+</div>');
 
-export const getHtml = (req: ParsedRequest, isDebug = false) => {
-  const { text, theme, md, fontSize, images, widths, heights } = req;
+/**
+ * Renders output HTML.
+ *
+ * @param props Rendering props
+ * @param isDebug Is debugging HTML?
+ */
+export const getHTML = (props: RenderProps, isDebug = false) => {
+  const { text, theme, md, fontSize, images, widths, heights } = props;
   return `<!DOCTYPE html>
 <html>
   <meta charset="utf-8">
   <title>Generated Image</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
-    ${getCss(theme, fontSize, isDebug ? "16px" : "10px")}
+    ${getCSS(theme, fontSize, isDebug ? "16px" : "10px")}
   </style>
   <body>
     <div class="logo-wrapper">
       ${images
-        .map((img, i) => getPlusSign(i) + getImage(img, widths[i], heights[i]))
+        .map((img, i) => getPlusSign(i) + getImg(img, widths[i], heights[i]))
         .join("")}
     </div>
     <div class="heading">${emojify(
-      md ? marked(text) : sanitizeHtml(text)
+      md ? marked(text) : sanitizeHTML(text)
     )}</div>
   </body>
 </html>`;

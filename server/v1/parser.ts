@@ -1,7 +1,7 @@
 import { NextApiRequest } from "next";
-import { getStringArray } from "~utils/primitive";
+import { splitNameAndExtension, toStringArray } from "~utils/primitive";
 
-export interface ParsedRequest {
+export type RenderProps = {
   fileType: "png" | "jpeg";
   text: string;
   theme: "light" | "dark";
@@ -10,37 +10,31 @@ export interface ParsedRequest {
   images: string[];
   widths: string[];
   heights: string[];
-}
+};
 
+/**
+ * Parses API request into rendering props.
+ *
+ * @param req Incoming request
+ */
 export const parseRequest = (req: NextApiRequest) => {
-  const { query } = req;
-  const { slug, fontSize, images, widths, heights, theme, md } = query;
+  const { slug, fontSize, images, widths, heights, theme, md } = req.query;
 
   if (Array.isArray(slug)) throw new Error("Expected a single slug.");
   if (Array.isArray(fontSize)) throw new Error("Expected a single fontSize.");
   if (Array.isArray(theme)) throw new Error("Expected a single theme.");
 
-  const parts = slug.split(".");
-  let ext = "";
-  let text = "";
-  if (parts.length === 0) {
-    text = "";
-  } else if (parts.length === 1) {
-    text = parts[0];
-  } else {
-    ext = parts.pop() || "";
-    text = parts.join(".");
-  }
-
-  const parsedReq: ParsedRequest = {
+  const [text, ext] = splitNameAndExtension(slug);
+  const props: RenderProps = {
     fileType: ext === "jpeg" || ext === "jpg" ? "jpeg" : "png",
     text: decodeURIComponent(text),
     theme: theme === "dark" ? "dark" : "light",
     md: md === "1" || md === "true",
     fontSize: fontSize || "6.5rem",
-    images: getStringArray(images),
-    widths: getStringArray(widths),
-    heights: getStringArray(heights),
+    images: toStringArray(images),
+    widths: toStringArray(widths),
+    heights: toStringArray(heights),
   };
-  return parsedReq;
+
+  return props;
 };

@@ -1,23 +1,10 @@
 import { NextApiRequest } from "next";
-import { getStringArray } from "~utils/primitive";
-
-export interface ParsedRequest {
-  fileType: "png" | "jpeg";
-  width: number;
-  height: number;
-  fontSize: number;
-  marginTop: number;
-  marginBottom: number;
-  text: string;
-  theme: "light" | "dark";
-  icons: string[];
-  colors: string[];
-}
+import { splitNameAndExtension, toStringArray } from "~utils/primitive";
 
 type Preset = {
+  fontSize: number;
   width: number;
   height: number;
-  fontSize: number;
   marginTop: number;
   marginBottom: number;
 };
@@ -33,34 +20,36 @@ const presets: { [index: string]: Preset } = {
   },
 };
 
+export type RenderProps = Preset & {
+  fileType: "png" | "jpeg";
+  text: string;
+  theme: "light" | "dark";
+  icons: string[];
+  colors: string[];
+};
+
+/**
+ * Parses API request into rendering props.
+ *
+ * @param req Incoming request
+ */
 export const parseRequest = (req: NextApiRequest) => {
-  const { query } = req;
-  const { slug, theme, target, icons, colors } = query;
+  const { slug, theme, target, icons, colors } = req.query;
 
   if (Array.isArray(slug)) throw new Error("Expected a single slug.");
   if (Array.isArray(theme)) throw new Error("Expected a single theme.");
   if (Array.isArray(target)) throw new Error("Expected a single target.");
 
-  const parts = slug.split(".");
-  let ext = "";
-  let text = "";
-  if (parts.length === 0) {
-    text = "";
-  } else if (parts.length === 1) {
-    text = parts[0];
-  } else {
-    ext = parts.pop() || "";
-    text = parts.join(".");
-  }
+  const [text, ext] = splitNameAndExtension(slug);
+  const preset = presets[target] || presets.og;
 
-  const preset = presets[target || ""] || presets.og;
-  const parsedReq: ParsedRequest = {
+  const props: RenderProps = {
     ...preset,
     fileType: ext === "jpeg" || ext === "jpg" ? "jpeg" : "png",
     text: decodeURIComponent(text),
     theme: theme === "dark" ? "dark" : "light",
-    icons: getStringArray(icons),
-    colors: getStringArray(colors),
+    icons: toStringArray(icons),
+    colors: toStringArray(colors),
   };
-  return parsedReq;
+  return props;
 };

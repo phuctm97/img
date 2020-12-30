@@ -1,35 +1,21 @@
 import { NextApiRequest, NextApiResponse } from "next";
+import { renderScreenshot, withErrorHandler } from "~server/api";
 import { getScreenshot } from "~server/chromium";
-import { parseRequest } from "~server/v1/parser";
-import { getHtml } from "~server/v1/template";
-import { dayInSecs } from "~utils/time";
 import { isHTMLDebug } from "~utils/env";
+import { parseRequest } from "~server/v1/parser";
+import { getHTML } from "~server/v1/template";
 
-const cacheAge = 7 * dayInSecs;
-
-export default async (req: NextApiRequest, res: NextApiResponse) => {
-  try {
-    const parsedReq = parseRequest(req);
-    const html = getHtml(parsedReq, isHTMLDebug);
+export default (req: NextApiRequest, res: NextApiResponse) =>
+  withErrorHandler(res)(async () => {
+    const props = parseRequest(req);
+    const html = getHTML(props, isHTMLDebug);
     if (isHTMLDebug) {
       res.setHeader("Content-Type", "text/html");
       res.end(html);
       return;
     }
 
-    const { fileType } = parsedReq;
+    const { fileType } = props;
     const screenshot = await getScreenshot(html, fileType, {});
-    res.statusCode = 200;
-    res.setHeader("Content-Type", `image/${fileType}`);
-    res.setHeader(
-      "Cache-Control",
-      `public, immutable, no-transform, s-maxage=${cacheAge}, max-age=${cacheAge}`
-    );
-    res.end(screenshot);
-  } catch (err) {
-    res.statusCode = 500;
-    res.setHeader("Content-Type", "text/html");
-    res.end("<h1>Internal Error</h1><p>Sorry, there was a problem.</p>");
-    console.error(err);
-  }
-};
+    renderScreenshot(res, screenshot, fileType);
+  });
