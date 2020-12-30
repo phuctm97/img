@@ -2,7 +2,7 @@ import path from "path";
 import { readFileSync } from "fs";
 import marked from "marked";
 import twemoji from "twemoji";
-import { sanitizeHtml } from "~server/sanitizer";
+import { sanitizeHTML } from "~server/sanitizer";
 import { ParsedRequest } from "./parser";
 
 const emojify = (text: string) =>
@@ -93,7 +93,7 @@ const getCss = (theme: string, fontSize: string, baseSize = "16px") => {
     }
     .heading {
       font-family: 'Inter', sans-serif;
-      font-size: ${sanitizeHtml(fontSize)};
+      font-size: ${sanitizeHTML(fontSize)};
       font-style: normal;
       color: ${foreground};
       line-height: 1.8;
@@ -103,8 +103,8 @@ const getCss = (theme: string, fontSize: string, baseSize = "16px") => {
 const getImage = (src: string, width = "auto", height = "18rem") => `<img
   class="logo"
   alt="Generated Image"
-  src="${sanitizeHtml(src)}"
-  style="width:${sanitizeHtml(width)};height:${sanitizeHtml(height)};"
+  src="${sanitizeHTML(src)}"
+  style="width:${sanitizeHTML(width)};height:${sanitizeHTML(height)};"
 />`;
 
 const getPlusSign = (i: number) => (i === 0 ? "" : '<div class="plus">+</div>');
@@ -126,7 +126,7 @@ export const getHtml = (req: ParsedRequest, isDebug = false) => {
         .join("")}
     </div>
     <div class="heading">${emojify(
-      md ? marked(text) : sanitizeHtml(text)
+      md ? marked(text) : sanitizeHTML(text)
     )}</div>
   </body>
 </html>`;

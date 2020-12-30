@@ -7,5 +7,5 @@ const sanitizedTokens: { [key: string]: string } = {
   "/": "&#x2F;",
 };
 
-export const sanitizeHtml = (html: string | Buffer) =>
+export const sanitizeHTML = (html: string | Buffer) =>
   String(html).replace(/[&<>"'\/]/g, (key) => sanitizedTokens[key]);
