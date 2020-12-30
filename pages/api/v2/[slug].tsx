@@ -1,16 +1,16 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { getScreenshot } from "~server/chromium";
-import { parseRequest } from "~server/v2/parser";
-import { getHtml } from "~server/v2/template";
-import { dayInSecs } from "~utils/time";
 import { isHTMLDebug } from "~utils/env";
+import { dayInSecs } from "~utils/time";
+import { parseRequest } from "~server/v2/parser";
+import { getHTML } from "~server/v2/template";
 
 const cacheAge = 7 * dayInSecs;
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     const parsedReq = parseRequest(req);
-    const html = getHtml(parsedReq);
+    const html = getHTML(parsedReq);
     if (isHTMLDebug) {
       res.setHeader("Content-Type", "text/html");
       res.end(html);

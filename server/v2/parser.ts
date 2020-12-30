@@ -1,23 +1,10 @@
 import { NextApiRequest } from "next";
 import { splitNameAndExtension, toStringArray } from "~utils/primitive";
 
-export interface ParsedRequest {
-  fileType: "png" | "jpeg";
-  fontSize: number;
-  width: number;
-  height: number;
-  marginTop: number;
-  marginBottom: number;
-  text: string;
-  theme: "light" | "dark";
-  icons: string[];
-  colors: string[];
-}
-
 type Preset = {
+  fontSize: number;
   width: number;
   height: number;
-  fontSize: number;
   marginTop: number;
   marginBottom: number;
 };
@@ -33,6 +20,19 @@ const presets: { [index: string]: Preset } = {
   },
 };
 
+export type RenderProps = Preset & {
+  fileType: "png" | "jpeg";
+  text: string;
+  theme: "light" | "dark";
+  icons: string[];
+  colors: string[];
+};
+
+/**
+ * Parses API request into rendering props.
+ *
+ * @param req Incoming request
+ */
 export const parseRequest = (req: NextApiRequest) => {
   const { slug, theme, target, icons, colors } = req.query;
 
@@ -43,7 +43,7 @@ export const parseRequest = (req: NextApiRequest) => {
   const [text, ext] = splitNameAndExtension(slug);
   const preset = presets[target] || presets.og;
 
-  const parsedReq: ParsedRequest = {
+  const props: RenderProps = {
     ...preset,
     fileType: ext === "jpeg" || ext === "jpg" ? "jpeg" : "png",
     text: decodeURIComponent(text),
@@ -51,5 +51,5 @@ export const parseRequest = (req: NextApiRequest) => {
     icons: toStringArray(icons),
     colors: toStringArray(colors),
   };
-  return parsedReq;
+  return props;
 };
