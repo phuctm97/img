@@ -3513,10 +3513,10 @@ simple-get@^4.0.0:
     once "^1.3.1"
     simple-concat "^1.0.0"
 
-simple-icons@^4.6.0:
-  version "4.6.0"
-  resolved "https://registry.yarnpkg.com/simple-icons/-/simple-icons-4.6.0.tgz#b865062fce1aa9f2583f50544ba6285140ae95a3"
-  integrity sha512-4CSMArZuMg8O3W65JuxgqsTaqMDkSHZkhez+vnv389rW3Qa537FNmlyh9Dg7L7/xwOI03d/SFLrQ8c1ZEOfBow==
+simple-icons@^4.7.0:
+  version "4.7.0"
+  resolved "https://registry.yarnpkg.com/simple-icons/-/simple-icons-4.7.0.tgz#3d89a92e0bd1e63d188dc9676797868cf2db13c0"
+  integrity sha512-DrdSFX/a0scepibk0YUZPGnjk+k6Zwwy6b44DWTKn94Ndf8ntGMwczRSQIK3NgbjV5PaK18AvofzwlGypouEYw==
 
 simple-swizzle@^0.2.2:
   version "0.2.2"
