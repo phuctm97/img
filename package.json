@@ -23,7 +23,7 @@
   "dependencies": {
     "chrome-aws-lambda": "^5.5.0",
     "marked": "^2.0.5",
-    "next": "^10.0.7",
+    "next": "^10.2.3",
     "puppeteer-core": "^5.5.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
