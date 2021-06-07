@@ -32,7 +32,7 @@
   },
   "devDependencies": {
     "@types/marked": "^2.0.3",
-    "@types/node": "^15.9.0",
+    "@types/node": "^15.12.1",
     "@types/puppeteer-core": "^5.4.0",
     "@types/react": "^17.0.9",
     "@types/react-dom": "^17.0.6",
