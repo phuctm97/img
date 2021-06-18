@@ -35,7 +35,7 @@
     "@types/node": "^15.12.2",
     "@types/puppeteer-core": "^5.4.0",
     "@types/react": "^17.0.11",
-    "@types/react-dom": "^17.0.6",
+    "@types/react-dom": "^17.0.8",
     "@types/simple-icons": "^5.0.0",
     "@types/twemoji": "^12.1.1",
     "prettier": "^2.3.1",
