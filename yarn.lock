@@ -1834,10 +1834,10 @@ shell-quote@1.7.2:
   resolved "https://registry.yarnpkg.com/shell-quote/-/shell-quote-1.7.2.tgz#67a7d02c76c9da24f99d20808fcaded0e0e04be2"
   integrity sha512-mRz/m/JVscCrkMyPqHc/bczi3OQHkLTqXHEFu0zDhK/qfv3UcOA4SVmRCLmos4bhjr9ekVQubj/R7waKapmiQg==
 
-simple-icons@^5.2.0:
-  version "5.2.0"
-  resolved "https://registry.yarnpkg.com/simple-icons/-/simple-icons-5.2.0.tgz#ed77c74fe8b22813aa8b7cdead8b8e5fa66f474b"
-  integrity sha512-lRKW77ntIlvX9xy92OJqfIvYnm7Extz1GvKWFpVH/xStUO54QiAzYaqz13C8PQSfVP9gLCSA7ONsAMWnfqxu3A==
+simple-icons@^5.5.0:
+  version "5.5.0"
+  resolved "https://registry.yarnpkg.com/simple-icons/-/simple-icons-5.5.0.tgz#06efc93e135ffb05aee712eec0c3439fa8f91bf4"
+  integrity sha512-FiC/qOTe2CVRbur7SYOg1iPbAo5AkrBWDiv9khmfPnZyxtu8AyDF7aj+blNuuN77zVCFSuu4j71yJ5q+WJwIDQ==
 
 source-map@0.7.3:
   version "0.7.3"
