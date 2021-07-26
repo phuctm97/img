@@ -153,10 +153,10 @@
   resolved "https://registry.yarnpkg.com/@types/scheduler/-/scheduler-0.16.1.tgz#18845205e86ff0038517aab7a18a62a6b9f71275"
   integrity sha512-EaCxbanVeyxDRTQBkdLb3Bvl/HK7PBK6UJjsSixB0iHKoWxE5uu2Q/DgtpOhPIojN0Zl1whvOd7PoHs2P0s5eA==
 
-"@types/simple-icons@^5.0.1":
-  version "5.0.1"
-  resolved "https://registry.yarnpkg.com/@types/simple-icons/-/simple-icons-5.0.1.tgz#7fb48b30aae769d229d463cc41992e5512ed3a62"
-  integrity sha512-m00W0rcaXhyGD2YaZljj+Q/VdkEm+o4pbRm8UTDWGtAUeDNvoSxq/00xGQy4SWZb4kXN/enLLXYfcKoUF7jOvw==
+"@types/simple-icons@^5.8.0":
+  version "5.8.0"
+  resolved "https://registry.yarnpkg.com/@types/simple-icons/-/simple-icons-5.8.0.tgz#f21ae9af517a25cbfbd95ca2b812b9a93e2a66b9"
+  integrity sha512-2HeuJRjOhwCV6jnflcNtI68Xd9WKsVqVpgeokGz2buNyfuq0F0h/QDcPPZzNlK1OnL5zQfdd5jlG6f3ijkTHnw==
 
 "@types/twemoji@^12.1.2":
   version "12.1.2"
