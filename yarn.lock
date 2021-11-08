@@ -153,10 +153,12 @@
   resolved "https://registry.yarnpkg.com/@types/scheduler/-/scheduler-0.16.1.tgz#18845205e86ff0038517aab7a18a62a6b9f71275"
   integrity sha512-EaCxbanVeyxDRTQBkdLb3Bvl/HK7PBK6UJjsSixB0iHKoWxE5uu2Q/DgtpOhPIojN0Zl1whvOd7PoHs2P0s5eA==
 
-"@types/simple-icons@^5.0.1":
-  version "5.0.1"
-  resolved "https://registry.yarnpkg.com/@types/simple-icons/-/simple-icons-5.0.1.tgz#7fb48b30aae769d229d463cc41992e5512ed3a62"
-  integrity sha512-m00W0rcaXhyGD2YaZljj+Q/VdkEm+o4pbRm8UTDWGtAUeDNvoSxq/00xGQy4SWZb4kXN/enLLXYfcKoUF7jOvw==
+"@types/simple-icons@^5.21.1":
+  version "5.21.1"
+  resolved "https://registry.yarnpkg.com/@types/simple-icons/-/simple-icons-5.21.1.tgz#d80b05d50312f841b0bf77d7e3b005fb5ed52091"
+  integrity sha512-exnKcr2DxKe0UsGIjvw/hv88OAWkxwPped5iq7YlgC9flaxAJHHvsjmq45Sr7FYjjyrwJI8VFh85xzY6k+L5WQ==
+  dependencies:
+    simple-icons "*"
 
 "@types/twemoji@^12.1.2":
   version "12.1.2"
@@ -1834,10 +1836,10 @@ shell-quote@1.7.2:
   resolved "https://registry.yarnpkg.com/shell-quote/-/shell-quote-1.7.2.tgz#67a7d02c76c9da24f99d20808fcaded0e0e04be2"
   integrity sha512-mRz/m/JVscCrkMyPqHc/bczi3OQHkLTqXHEFu0zDhK/qfv3UcOA4SVmRCLmos4bhjr9ekVQubj/R7waKapmiQg==
 
-simple-icons@^5.7.0:
-  version "5.7.0"
-  resolved "https://registry.yarnpkg.com/simple-icons/-/simple-icons-5.7.0.tgz#11667c452e99db4f10d4c83c43409010cd81a2f4"
-  integrity sha512-o4wYNRDSvk3/1UFPxsDfeZzo/J/o8s42VERdtVhmt50/I0w5WkWTvDicv9htQ7Uaj8ZcUaduBmo6b2ZgzoOJnw==
+simple-icons@*, simple-icons@^5.7.0:
+  version "5.22.0"
+  resolved "https://registry.yarnpkg.com/simple-icons/-/simple-icons-5.22.0.tgz#c987aeea658828e858b774ab334264dabbe0344c"
+  integrity sha512-crEorhti73Sh88EZbw9mG/toCEoSQexf8HJCFFloz2V7bP7/lDpgcEmoWrW3SAh9tOQL8sWau4DSSRBVvRIRew==
 
 source-map@0.7.3:
   version "0.7.3"
